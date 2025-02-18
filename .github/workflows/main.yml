@@ -25,10 +25,16 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci  # Use npm ci for consistent builds
+
+      - name: Transpile TypeScript to JavaScript
+        run: npm run build  # Make sure your package.json has a build script for tsc
 
       - name: Zip function code WITH node_modules
-        run: zip -r lambda.zip . -x ".git/*"  # Include all files and directories, INCLUDING node_modules, EXCLUDING .git
+        run: zip -r lambda.zip . -x ".git/*"  # Adjust if necessary to include/exclude specific files
 
       - name: Update Lambda function code
         run: aws lambda update-function-code --function-name latest-inkhub-backend --zip-file fileb://lambda.zip
+        
+      - name: Clean up
+        run: rm lambda.zip  # Optional cleanup step
