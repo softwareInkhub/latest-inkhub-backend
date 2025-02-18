@@ -32,13 +32,13 @@ jobs:
 
       - name: Zip function code from dist folder
         run: |
-          cd dist  # Navigate to the dist directory where transpiled code is located
-          zip -r ../lambda.zip .  # Zip all contents of the dist directory to lambda.zip
-          cd ..    # Return to the root of the repository
+          cd dist
+          zip -r ../lambda.zip .
+          cd ..
 
       - name: Include node_modules and package.json in zip
         run: |
-          zip -ur lambda.zip node_modules package.json  # Update the zip file to include node_modules and package.json
+          zip -ur lambda.zip node_modules package.json
 
       - name: Update Lambda function code
         run: aws lambda update-function-code --function-name latest-inkhub-backend --zip-file fileb://lambda.zip
