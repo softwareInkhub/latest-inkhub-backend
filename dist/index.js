@@ -16,7 +16,7 @@ app.get("/", (req, res) => { res.send("hello"); });
 app.use('/api', schemaRoutes_1.default);
 app.use('/api', dataRoutes_1.default);
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-// module.exports.handler=serverless(app)
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
+module.exports.handler = serverless(app);

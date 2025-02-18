@@ -30,9 +30,15 @@ jobs:
       - name: Transpile TypeScript to JavaScript
         run: npm run build
 
-      - name: Zip function code WITH node_modules
+      - name: Zip function code from dist folder
         run: |
-          zip -r lambda.zip dist node_modules package.json -x "*.git*"
+          cd dist  # Navigate to the dist directory where transpiled code is located
+          zip -r ../lambda.zip .  # Zip all contents of the dist directory to lambda.zip
+          cd ..    # Return to the root of the repository
+
+      - name: Include node_modules and package.json in zip
+        run: |
+          zip -ur lambda.zip node_modules package.json  # Update the zip file to include node_modules and package.json
 
       - name: Update Lambda function code
         run: aws lambda update-function-code --function-name latest-inkhub-backend --zip-file fileb://lambda.zip
