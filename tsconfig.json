@@ -9,6 +9,6 @@
       "forceConsistentCasingInFileNames": true,
       "outDir": "./dist"
     },
-    "include": ["**/*.ts", "src/acbda/accessor/firebaseClientAccessor.ts"],
+    "include": ["**/*.ts", "src/acbda/accessor/firebaseClientAccessor.ts", "src/index.js"],
     "exclude": ["node_modules"]
   }
