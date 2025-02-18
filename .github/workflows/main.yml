@@ -31,7 +31,8 @@ jobs:
         run: npm run build  # Ensure you have a build script in your package.json
 
       - name: Zip function code WITH node_modules
-        run: zip -r ../lambda.zip . ../node_modules ../package.json -x "*.git*"  # Zip the contents including node_modules
+        run: |
+          zip -r ../lambda.zip . ../node_modules ../package.json -x "*.git*"  # Zip the contents including node_modules
 
       - name: Update Lambda function code
         run: aws lambda update-function-code --function-name latest-inkhub-backend --zip-file fileb://lambda.zip
