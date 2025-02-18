@@ -1,3 +1,4 @@
+const serverless = require('serverless-http')
 import express from 'express';
 import cors from 'cors';
 import schemaRoutes from './routes/schemaRoutes';
@@ -13,7 +14,9 @@ app.use(express.json());
 app.use('/api', schemaRoutes);
 app.use('/api', dataRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
+
+module.exports.handler=serverless(app)
